@@ -1,13 +1,8 @@
 package com.example.programmingTask.controller;
 
-import com.example.programmingTask.ProgrammingTaskApplication;
 import com.example.programmingTask.model.Message;
-import com.example.programmingTask.repository.MessageRepository;
 import com.example.programmingTask.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +21,11 @@ public class MessageController {
 
     @RequestMapping("/all")
     public String getAllMessages() {
-        return messageService.getAllMessages().toString();
+        StringBuilder messageConcat = new StringBuilder();
+        List<Message> messages = messageService.getAllMessages();
+        for (Message message : messages)
+            messageConcat.append(message.getId()).append(" ").append(message.getMessageContent()).append("\n");
+        return messageConcat.toString();
     }
 
     @RequestMapping("/message/add")

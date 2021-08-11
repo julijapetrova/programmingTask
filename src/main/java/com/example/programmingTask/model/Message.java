@@ -12,6 +12,10 @@ public class Message {
     private Long id;
     private String messageContent;
 
+    //for JPA
+    protected Message() {
+    }
+
     public Message(String messageContent) {
         this.messageContent = messageContent;
     }
