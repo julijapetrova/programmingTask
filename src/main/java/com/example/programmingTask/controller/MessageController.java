@@ -3,9 +3,11 @@ package com.example.programmingTask.controller;
 import com.example.programmingTask.model.Message;
 import com.example.programmingTask.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class MessageController {
     @Autowired
     MessageService messageService;
 
-    @RequestMapping("/")
+    @RequestMapping("/getmessage")
     public String getMessage() {
         return "\"/\" getAllMessages \"/all\" addMessage \"/message/add\"";
     }
@@ -29,10 +31,11 @@ public class MessageController {
     }
 
     @RequestMapping("/message/add")
-    public String addMessage(@RequestParam(value = "messageContent", defaultValue = "") String messageContent) {
+    public RedirectView addMessage(@RequestParam(value = "messageContent", defaultValue = "") String messageContent) {
         Message message = new Message(messageContent);
         messageService.saveMessage(message);
-        return message.getId() + " " + message.getMessageContent();
+        //return message.getId() + " " + message.getMessageContent();
+        return new RedirectView("/");
     }
 
 }

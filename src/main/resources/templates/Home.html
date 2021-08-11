@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head><title>Home Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="l-box">
+<h1>Hello !</h1>
+<p>Welcome to <span th:text="${appName}">Our App</span></p>
+<table class="pure-table">
+<tr th:each="message: ${messages}">
+    <td th:text="${message.id}" />
+    <td th:text="${message.messageContent}" />
+</tr></table>
+</body>
+<style>
+
+    .l-box {
+        padding: 1em;
+    }
+</style>
+
+</html>
